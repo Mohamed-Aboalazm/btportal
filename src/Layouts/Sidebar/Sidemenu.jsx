@@ -1115,20 +1115,34 @@ export const EXECUTIVEMENUITEMS = [
 
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/admin/users`,
-        icon: "fe fe-user-plus",
-        type: "link",
+        title: "CRM",
+        icon: "fe fe-users",
+        type: "sub",
         active: false,
         selected: false,
-        title: "Users",
-      },
-      {
-        path: `${process.env.PUBLIC_URL}/admin/Contacts`,
-        icon: "fe fe-user",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Contacts",
+        children: [
+          {
+            path: `${process.env.PUBLIC_URL}/admin/users`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Users",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/admin/Contacts`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Contacts",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/admin/Registered_customers`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Accounts",
+          },
+        ],
       },
       {
         path: `${process.env.PUBLIC_URL}/admin/Task`,
@@ -1137,14 +1151,6 @@ export const EXECUTIVEMENUITEMS = [
         active: false,
         selected: false,
         title: "Task Master",
-      },
-      {
-        path: `${process.env.PUBLIC_URL}/admin/Registered_customers`,
-        icon: "fe fe-user",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Accounts",
       },
       {
         path: `${process.env.PUBLIC_URL}/admin/Templates`,
@@ -1353,12 +1359,34 @@ export const ADMINMENUITEMS = [
 
     Items: [
       {
-        path: `${process.env.PUBLIC_URL}/admin/users`,
-        icon: "fe fe-user-plus",
-        type: "link",
+        title: "CRM",
+        icon: "fe fe-users",
+        type: "sub",
         active: false,
         selected: false,
-        title: "Users",
+        children: [
+          {
+            path: `${process.env.PUBLIC_URL}/admin/users`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Users",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/admin/Contacts`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Contacts",
+          },
+          {
+            path: `${process.env.PUBLIC_URL}/admin/Registered_customers`,
+            type: "link",
+            active: false,
+            selected: false,
+            title: "Accounts",
+          },
+        ],
       },
       {
         path: `${process.env.PUBLIC_URL}/admin/Task`,
@@ -1367,22 +1395,6 @@ export const ADMINMENUITEMS = [
         active: false,
         selected: false,
         title: "Users",
-      },
-      {
-        path: `${process.env.PUBLIC_URL}/admin/Contacts`,
-        icon: "fe fe-user",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Contacts",
-      },
-      {
-        path: `${process.env.PUBLIC_URL}/admin/Registered_customers`,
-        icon: "fe fe-user",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Accounts",
       },
       {
         path: `${process.env.PUBLIC_URL}/admin/Templates`,

@@ -116,7 +116,7 @@ export default function Dashboard() {
           />
         </div>
         <div className="col-lg-12" style={{ marginTop: "100px" }}>
-          <div className="todo-list mt-2 p-15">
+          {/* <div className="todo-list mt-2 p-15">
             <h2>To Do List</h2>
             <div className="row">
               <div className="col-lg-7">
@@ -188,7 +188,7 @@ export default function Dashboard() {
                 </ol>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
