@@ -433,7 +433,6 @@ const TaskDetails = () => {
                                 name="status"
                                 id=""
                               >
-                                <option value="TO DO">TO DO</option>
                                 <option value="IN PROGRESS">IN PROGRESS</option>
 
                                 <option value="DONE">DONE</option>

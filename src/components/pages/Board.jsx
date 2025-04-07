@@ -1,10 +1,34 @@
 import React, { useState } from "react";
-import List from "./List";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import "./Board.scss"; // Tell webpack that Button.js uses these styles
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import "./Board.scss";
 import { v4 as uuidv4 } from "uuid";
 
 const Board = () => {
+  const [state, setState] = useState({
+    todo: {
+      title: "To Do",
+      items: [
+        { id: "1", content: "Task 1" },
+        { id: "12", content: "Task 2" },
+        { id: "13", content: "Task 3" },
+      ],
+    },
+    inProgress: {
+      title: "In Progress",
+      items: [
+        { id: "14", content: "Task 4" },
+        { id: "15", content: "Task 5" },
+      ],
+    },
+    completed: {
+      title: "Completed",
+      items: [
+        { id: "16", content: "Task 6" },
+        { id: "17", content: "Task 7" },
+      ],
+    },
+  });
+
   const onDragEnd = (result) => {
     const { source, destination } = result;
 
@@ -49,48 +73,41 @@ const Board = () => {
     }
   };
 
-  const [state, setState] = useState({
-    todo: {
-      title: "To Do",
-      items: [
-        { id: "1", content: "Task 1" },
-        { id: "12", content: "Task 2" },
-        { id: "13", content: "Task 3" },
-        { id: "2", content: "Task 1" },
-        { id: "22", content: "Task 233" },
-      ],
-    },
-    inProgress: {
-      title: "In Progress",
-      items: [
-        { id: "14", content: "Task 4" },
-        { id: "15", content: "Task 5" },
-        { id: "53", content: "Task 36" },
-        { id: "73", content: "Task 37" },
-      ],
-    },
-    completed: {
-      title: "Completed",
-      items: [
-        { id: "16", content: "Task 6" },
-        { id: "74", content: "Task 300" },
-        { id: "75", content: "Task 39" },
-        { id: "33", content: "Task 34" },
-        { id: "43", content: "Task 35" },
-      ],
-    },
-  });
-
   return (
-    <div className="board" style={{ maxHeight: "400px" }}>
+    <div className="board">
       <DragDropContext onDragEnd={onDragEnd}>
-        <List id="todo" title="To Do" items={state.todo.items} />
-        <List
-          id="inProgress"
-          title="In Progress"
-          items={state.inProgress.items}
-        />
-        <List id="completed" title="Completed" items={state.completed.items} />
+        {Object.entries(state).map(([columnId, column]) => (
+          <Droppable key={columnId} droppableId={columnId}>
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className="list" // Updated to use the "list" class
+              >
+                <h3 className="list-title">{column.title}</h3> {/* Added "list-title" class */}
+                {column.items.map((item, index) => (
+                  <Draggable
+                    key={item.id}
+                    draggableId={item.id}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="card" // Updated to use the "card" class
+                      >
+                        {item.content}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        ))}
       </DragDropContext>
     </div>
   );
