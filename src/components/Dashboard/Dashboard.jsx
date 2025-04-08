@@ -98,12 +98,12 @@ export default function Dashboard() {
     <div className="bg-white" style={{ height: "100%" }}>
       <br />
       <br />
-      <h2>{greeting}</h2>
+      <h2 class="greeting-header">{greeting}</h2>
       <div className="row">
         <div className="col-lg-6" style={{ height: "400px" }}>
           <Board />
         </div>
-        <div className="col-lg-6" style={{ height: "400px" }}>
+        <div className="col-lg-6" style={{ height: "400px", paddingRight: "25px" }}>
           <FullCalendar
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
@@ -115,8 +115,9 @@ export default function Dashboard() {
             // }}
           />
         </div>
-        <div className="col-lg-12" style={{ marginTop: "100px" }}>
-          {/* <div className="todo-list mt-2 p-15">
+        <div className="col-lg-12" style={{ marginTop: "250px" }}></div>
+        {/* <div className="col-lg-12" style={{ marginTop: "300px" }}>
+          <div className="todo-list mt-2 p-15">
             <h2>To Do List</h2>
             <div className="row">
               <div className="col-lg-7">
@@ -188,8 +189,8 @@ export default function Dashboard() {
                 </ol>
               </div>
             </div>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
       </div>
     </div>
   );

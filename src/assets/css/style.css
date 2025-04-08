@@ -87,6 +87,13 @@ License        :   Licensed under ThemeForest License
 --- typography
 --- width
 */
+/* CSS Customization Edits */
+.greeting-header {
+    padding: 10px 0 10px 20px;
+    color: #1c9ce6;
+    background-color: rgb(217, 237, 250);
+}
+
 /* ######## FONT ######## */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap");
 
@@ -15209,7 +15216,7 @@ small,
     }
 
     .app-content .side-app {
-        padding: 0px 15px 0 15px !important;
+        padding: 15px 15px 0 15px !important;
     }
 
     .header .header-right-icons .nav-link.icon {
@@ -23500,7 +23507,7 @@ ul.timeline>li:before {
 
 @media (min-width: 768px) {
     .app-content .side-app {
-        padding-block-start: 0px !important;
+        padding-block-start: 15px 0 0 0 !important;
     }
 }
 
@@ -51555,7 +51562,7 @@ body.transparent-mode *:hover::-webkit-scrollbar-thumb {
 }
 
 .app-content {
-    min-height: calc(100vh - 50px);
+    /* min-height: calc(100vh - 50px); */
     margin-block-end: 0 !important;
     -webkit-transition: margin-inline-start 450ms ease;
     -o-transition: margin-inline-start 450ms ease;
@@ -51565,7 +51572,7 @@ body.transparent-mode *:hover::-webkit-scrollbar-thumb {
 }
 
 .app-content .side-app {
-    padding: 0px 20px 0 20px;
+    padding: 15px 20px 0 20px;
 }
 
 .footer .container {

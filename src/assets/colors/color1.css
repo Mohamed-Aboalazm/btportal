@@ -1,5 +1,5 @@
 :root {
-    --primary-rgb: 108, 95, 252;
+    --primary-rgb: #1c9ce6;
     --primary-bg-color: rgb(var(--primary-rgb));
     --primary-bg-hover: rgb(var(--primary-rgb), 0.9);
     --primary-bg-border: rgb(var(--primary-rgb));
