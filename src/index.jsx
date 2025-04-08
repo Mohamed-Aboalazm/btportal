@@ -40,6 +40,8 @@ import Products from "./components/pages/Extension/Products/Products";
 import ProjectFinancial from "./components/pages/Extension/Products/ProjectFinancial";
 import Tax from "./components/pages/Extension/Products/Tax";
 import Contacts from "./components/pages/Extension/Products/Contacts";
+import { TaskProvider } from "./context/TaskContext";
+
 // import FullCalendar from "@fullcalendar/react";
 
 // const Auth = lazy(() =>
@@ -461,546 +463,540 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <ThemeProvider theme={theme}>
-    <Fragment>
-      <BrowserRouter>
-        <React.Suspense fallback={<Loader />}>
-          <Routes>
-            <Route
-              path={`${process.env.PUBLIC_URL}/`}
-              element={<AuthLogin />}
-            ></Route>
-
-            <Route
-              path={`${process.env.PUBLIC_URL}/login_retailer`}
-              element={<AuthLoginDealer />}
-            ></Route>
-            <Route path={`${process.env.PUBLIC_URL}/`} element={<App />}>
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/cities`}
-                element={<Cities />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Blogs`}
-                element={<Blogs />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Jobs`}
-                element={<Jobs />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/slider_images`}
-                element={<Slider_images />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/sections`}
-                element={<Sections />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/users`}
-                element={<Users />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Task`}
-                element={<Tasks />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/profile`}
-                element={<ProfileSection />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/leaveManagement`}
-                element={<LeaveManagement />}
-              />
-              {/* <Route
-                path={`${process.env.PUBLIC_URL}/admin/Quote`}
-                element={<Quoate />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Quotes`}
-                element={<Quotes />}
-              /> */}
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Invoice`}
-                element={<Invoice />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/products`}
-                element={<Products />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/ProjectFinancial/`}
-                element={<ProjectFinancial />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Tax`}
-                element={<Tax />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Contacts`}
-                element={<Contacts />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/InvoiceDetails/:id`}
-                element={<InvoiceDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Invoices`}
-                element={<Invoices />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/pendingLeave`}
-                element={<PendingLeave />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/approvedLeave`}
-                element={<ApprovedLeave />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Templates`}
-                element={<Templates />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/UserTimesheets/:user_id`}
-                element={<UserTimeSheets />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/TimeSheetDetails/:user_id/:week`}
-                element={<TimeSheetDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/templateDetails/:id`}
-                element={<TemplateDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Bookings`}
-                element={<Bookings />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/BookingsDetails/:id`}
-                element={<BookingsDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/OfflineBookings`}
-                element={<OfflineBookings />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Coupons`}
-                element={<Coupons />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Testimonials`}
-                element={<Testimonials />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Registered_customers`}
-                element={<RegisteredCustomers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/TimeSheet`}
-                element={<TimeSheet />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/ReportsTimeSheet`}
-                element={<ReportsTimeSheet />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/ReportsTimeSheetProjectWise`}
-                element={<ReportsTimeSheetProjectWise />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/MultiProjectReport`}
-                element={<MultiProjectReport />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/DateRangeReport`}
-                element={<DateRangeReport />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/projectsData`}
-                element={<ProjectsData />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/videos`}
-                element={<Videos />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/categories`}
-                element={<Categories />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips`}
-                element={<Trips type="NotArchive" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips/archive`}
-                element={<Trips type="Archive" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_customers`}
-                element={<Customers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/my_admin_enquires`}
-                element={<Enquires type="my" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/AddTrip`}
-                element={<AddTrip />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/addTimeSheet`}
-                element={<AddTimeSheet />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/AddCustomer`}
-                element={<AddCustomer />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/AddProject`}
-                element={<AddProject />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/UpdateCustomer/:id`}
-                element={<UpdateCustomer />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerProjects/:id`}
-                element={<CustomerProjects />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/BookingDates/:tripId/:cityId`}
-                element={<BookingDates />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/customer_carts`}
-                element={<CustomerCarts />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_enquires`}
-                element={<Enquires type="all" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips/:id`}
-                element={<TripsDetailsById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/project/:id`}
-                element={<Projects />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/taskDetails/:id`}
-                element={<TaskDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/taskDetails/subtask/:id/:taskid`}
-                element={<TaskDetailsSubtask />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/tripsCityDetails/:id`}
-                element={<TripsCityDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/dashboard`}
-                element={<Dashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/DealerDashboard`}
-                element={<DealerDashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerDashboard`}
-                element={<CustomerDashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerUploadInvoice`}
-                element={<CustomerUploadInvoice />}
-              />
-
-              {/* path={`${process.env.PUBLIC_URL}/admin/cities`}
-                element={<Cities />}
-              /> */}
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Blogs`}
-                element={<Blogs />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Jobs`}
-                element={<Jobs />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/slider_images`}
-                element={<Slider_images />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/sections`}
-                element={<Sections />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/users`}
-                element={<Users />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/leaveManagement`}
-                element={<LeaveManagement />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/pendingLeave`}
-                element={<PendingLeave />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/approvedLeave`}
-                element={<ApprovedLeave />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Templates`}
-                element={<Templates />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/templateDetails/:id`}
-                element={<TemplateDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/TemplateDetailsSubTask/:id/:id2`}
-                element={<TemplateDetailsSubTask />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Bookings`}
-                element={<Bookings />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/BookingsDetails/:id`}
-                element={<BookingsDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/OfflineBookings`}
-                element={<OfflineBookings />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Coupons`}
-                element={<Coupons />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Testimonials`}
-                element={<Testimonials />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/Registered_customers`}
-                element={<RegisteredCustomers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/TimeSheet`}
-                element={<TimeSheet />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/projectsData`}
-                element={<ProjectsData />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/videos`}
-                element={<Videos />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/categories`}
-                element={<Categories />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips`}
-                element={<Trips type="NotArchive" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips/archive`}
-                element={<Trips type="Archive" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_customers`}
-                element={<Customers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/my_admin_enquires`}
-                element={<Enquires type="my" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/AddTrip`}
-                element={<AddTrip />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/addTimeSheet`}
-                element={<AddTimeSheet />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/AddCustomer`}
-                element={<AddCustomer />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/UpdateCustomer/:id`}
-                element={<UpdateCustomer />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerProjects/:id`}
-                element={<CustomerProjects />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/BookingDates/:tripId/:cityId`}
-                element={<BookingDates />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/customer_carts`}
-                element={<CustomerCarts />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_enquires`}
-                element={<Enquires type="all" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/trips/:id`}
-                element={<TripsDetailsById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/project/:id`}
-                element={<Projects />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/taskDetails/:id`}
-                element={<TaskDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin/tripsCityDetails/:id`}
-                element={<TripsCityDetails />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/dashboard`}
-                element={<Dashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/DealerDashboard`}
-                element={<DealerDashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerDashboard`}
-                element={<CustomerDashboard />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerUploadInvoice`}
-                element={<CustomerUploadInvoice />}
-              />
+  <TaskProvider>
+    <ThemeProvider theme={theme}>
+      <Fragment>
+        <BrowserRouter>
+          <React.Suspense fallback={<Loader />}>
+            <Routes>
+              <Route
+                path={`${process.env.PUBLIC_URL}/`}
+                element={<AuthLogin />}
+              ></Route>
 
               <Route
-                path={`${process.env.PUBLIC_URL}/LeaderBoardCustomer`}
-                element={<LeaderBoardCustomer />}
-              />
+                path={`${process.env.PUBLIC_URL}/login_retailer`}
+                element={<AuthLoginDealer />}
+              ></Route>
+              <Route path={`${process.env.PUBLIC_URL}/`} element={<App />}>
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/cities`}
+                  element={<Cities />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Blogs`}
+                  element={<Blogs />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Jobs`}
+                  element={<Jobs />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/slider_images`}
+                  element={<Slider_images />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/sections`}
+                  element={<Sections />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/users`}
+                  element={<Users />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Task`}
+                  element={<Tasks />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/profile`}
+                  element={<ProfileSection />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/leaveManagement`}
+                  element={<LeaveManagement />}
+                />
+                {/* <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Quote`}
+                  element={<Quoate />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Quotes`}
+                  element={<Quotes />}
+                /> */}
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Invoice`}
+                  element={<Invoice />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/products`}
+                  element={<Products />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/ProjectFinancial/`}
+                  element={<ProjectFinancial />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Tax`}
+                  element={<Tax />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Contacts`}
+                  element={<Contacts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/InvoiceDetails/:id`}
+                  element={<InvoiceDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Invoices`}
+                  element={<Invoices />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/pendingLeave`}
+                  element={<PendingLeave />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/approvedLeave`}
+                  element={<ApprovedLeave />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Templates`}
+                  element={<Templates />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/UserTimesheets/:user_id`}
+                  element={<UserTimeSheets />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/TimeSheetDetails/:user_id/:week`}
+                  element={<TimeSheetDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/templateDetails/:id`}
+                  element={<TemplateDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Bookings`}
+                  element={<Bookings />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/BookingsDetails/:id`}
+                  element={<BookingsDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/OfflineBookings`}
+                  element={<OfflineBookings />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Coupons`}
+                  element={<Coupons />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Testimonials`}
+                  element={<Testimonials />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Registered_customers`}
+                  element={<RegisteredCustomers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/TimeSheet`}
+                  element={<TimeSheet />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/ReportsTimeSheet`}
+                  element={<ReportsTimeSheet />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/ReportsTimeSheetProjectWise`}
+                  element={<ReportsTimeSheetProjectWise />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/MultiProjectReport`}
+                  element={<MultiProjectReport />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/DateRangeReport`}
+                  element={<DateRangeReport />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/projectsData`}
+                  element={<ProjectsData />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/videos`}
+                  element={<Videos />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/categories`}
+                  element={<Categories />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips`}
+                  element={<Trips type="NotArchive" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips/archive`}
+                  element={<Trips type="Archive" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_customers`}
+                  element={<Customers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/my_admin_enquires`}
+                  element={<Enquires type="my" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/AddTrip`}
+                  element={<AddTrip />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/addTimeSheet`}
+                  element={<AddTimeSheet />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/AddCustomer`}
+                  element={<AddCustomer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/UpdateCustomer/:id`}
+                  element={<UpdateCustomer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerProjects/:id`}
+                  element={<CustomerProjects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/BookingDates/:tripId/:cityId`}
+                  element={<BookingDates />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/customer_carts`}
+                  element={<CustomerCarts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_enquires`}
+                  element={<Enquires type="all" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips/:id`}
+                  element={<TripsDetailsById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/project/:id`}
+                  element={<Projects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/taskDetails/:id`}
+                  element={<TaskDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/tripsCityDetails/:id`}
+                  element={<TripsCityDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/dashboard`}
+                  element={<Dashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/DealerDashboard`}
+                  element={<DealerDashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerDashboard`}
+                  element={<CustomerDashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerUploadInvoice`}
+                  element={<CustomerUploadInvoice />}
+                />
+
+                {/* path={`${process.env.PUBLIC_URL}/admin/cities`}
+                  element={<Cities />}
+                /> */}
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Blogs`}
+                  element={<Blogs />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Jobs`}
+                  element={<Jobs />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/slider_images`}
+                  element={<Slider_images />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/sections`}
+                  element={<Sections />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/users`}
+                  element={<Users />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/leaveManagement`}
+                  element={<LeaveManagement />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/pendingLeave`}
+                  element={<PendingLeave />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/approvedLeave`}
+                  element={<ApprovedLeave />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Templates`}
+                  element={<Templates />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/templateDetails/:id`}
+                  element={<TemplateDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/TemplateDetailsSubTask/:id/:id2`}
+                  element={<TemplateDetailsSubTask />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Bookings`}
+                  element={<Bookings />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/BookingsDetails/:id`}
+                  element={<BookingsDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/OfflineBookings`}
+                  element={<OfflineBookings />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Coupons`}
+                  element={<Coupons />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Testimonials`}
+                  element={<Testimonials />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/Registered_customers`}
+                  element={<RegisteredCustomers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/TimeSheet`}
+                  element={<TimeSheet />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/projectsData`}
+                  element={<ProjectsData />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/videos`}
+                  element={<Videos />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/categories`}
+                  element={<Categories />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips`}
+                  element={<Trips type="NotArchive" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips/archive`}
+                  element={<Trips type="Archive" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_customers`}
+                  element={<Customers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/my_admin_enquires`}
+                  element={<Enquires type="my" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/AddTrip`}
+                  element={<AddTrip />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/addTimeSheet`}
+                  element={<AddTimeSheet />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/AddCustomer`}
+                  element={<AddCustomer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/UpdateCustomer/:id`}
+                  element={<UpdateCustomer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerProjects/:id`}
+                  element={<CustomerProjects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/BookingDates/:tripId/:cityId`}
+                  element={<BookingDates />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/customer_carts`}
+                  element={<CustomerCarts />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_enquires`}
+                  element={<Enquires type="all" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/trips/:id`}
+                  element={<TripsDetailsById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/project/:id`}
+                  element={<Projects />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/taskDetails/:id`}
+                  element={<TaskDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin/tripsCityDetails/:id`}
+                  element={<TripsCityDetails />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/dashboard`}
+                  element={<Dashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/DealerDashboard`}
+                  element={<DealerDashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerDashboard`}
+                  element={<CustomerDashboard />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerUploadInvoice`}
+                  element={<CustomerUploadInvoice />}
+                />
+
+                <Route
+                  path={`${process.env.PUBLIC_URL}/LeaderBoardCustomer`}
+                  element={<LeaderBoardCustomer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/LeaderBoardDealer`}
+                  element={<LeaderBoardDealer />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases`}
+                  element={<PurchasesAdmin />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_all`}
+                  element={<PurchasesAdmin status="all" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_inprogress`}
+                  element={<PurchasesAdmin status="inprogress" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_reupload`}
+                  element={<PurchasesAdmin status="re-upload" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_updated`}
+                  element={<PurchasesAdmin status="updated" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_rejected`}
+                  element={<PurchasesAdmin status="rejected" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_purchases_verified`}
+                  element={<PurchasesAdmin status="verified" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/dealer_customers`}
+                  element={<CustomersDealers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/dealer_purchases`}
+                  element={<PurchasesDealers />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_dealers`}
+                  element={<Dealers isactive={true} />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_dealers_inactive`}
+                  element={<Dealers isactive={false} />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_dealers_by_state`}
+                  element={<DealersByState />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_customers_by_id`}
+                  element={<CustomerById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_customers_by_id/:id`}
+                  element={<CustomerById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_section_details/:id`}
+                  element={<SectionById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_enquiry_details/:id`}
+                  element={<EnquiresById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/PurchaseDetailsById/:id`}
+                  element={<PurchaseDetailsById />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/customer_purchases/:id`}
+                  element={<CustomerPurchases type="all" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerReloadInvoiceNew/:id`}
+                  element={<CustomerPurchases type="re-upload" />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/customer_tokens/:id`}
+                  element={<CustomerTokens />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/CustomerThankYouPage/:id`}
+                  element={<CustomerThankYouPage />}
+                />
+                <Route
+                  path={`${process.env.PUBLIC_URL}/admin_dealer_by_id/:id`}
+                  element={<DealerById />}
+                />
+              </Route>
+              {/* <Route path="*" element={<Invoice />} /> */}
+              <Route path="search_dealer" element={<SearchDealer />}></Route>
               <Route
-                path={`${process.env.PUBLIC_URL}/LeaderBoardDealer`}
-                element={<LeaderBoardDealer />}
-              />
+                path="dealer/:id"
+                element={<CustomerLogin type="normal" />}
+              ></Route>
               <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases`}
-                element={<PurchasesAdmin />}
-              />
+                path="reupload/:id"
+                element={<CustomerLogin type="reupload" />}
+              ></Route>
               <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_all`}
-                element={<PurchasesAdmin status="all" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_inprogress`}
-                element={<PurchasesAdmin status="inprogress" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_reupload`}
-                element={<PurchasesAdmin status="re-upload" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_updated`}
-                element={<PurchasesAdmin status="updated" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_rejected`}
-                element={<PurchasesAdmin status="rejected" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_purchases_verified`}
-                element={<PurchasesAdmin status="verified" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/dealer_customers`}
-                element={<CustomersDealers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/dealer_purchases`}
-                element={<PurchasesDealers />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_dealers`}
-                element={<Dealers isactive={true} />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_dealers_inactive`}
-                element={<Dealers isactive={false} />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_dealers_by_state`}
-                element={<DealersByState />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_customers_by_id`}
-                element={<CustomerById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_customers_by_id/:id`}
-                element={<CustomerById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_section_details/:id`}
-                element={<SectionById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_enquiry_details/:id`}
-                element={<EnquiresById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/PurchaseDetailsById/:id`}
-                element={<PurchaseDetailsById />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/customer_purchases/:id`}
-                element={<CustomerPurchases type="all" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerReloadInvoiceNew/:id`}
-                element={<CustomerPurchases type="re-upload" />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/customer_tokens/:id`}
-                element={<CustomerTokens />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/CustomerThankYouPage/:id`}
-                element={<CustomerThankYouPage />}
-              />
-              <Route
-                path={`${process.env.PUBLIC_URL}/admin_dealer_by_id/:id`}
-                element={<DealerById />}
-              />
-            </Route>
-            {/* <Route path="*" element={<Invoice />} /> */}
-            <Route path="search_dealer" element={<SearchDealer />}></Route>
-            <Route
-              path="dealer/:id"
-              element={<CustomerLogin type="normal" />}
-            ></Route>
-            <Route
-              path="reupload/:id"
-              element={<CustomerLogin type="reupload" />}
-            ></Route>
-            <Route
-              path="login_customer"
-              element={<CustomerLoginWithoutDealer />}
-            ></Route>
-          </Routes>
-        </React.Suspense>
-      </BrowserRouter>
-    </Fragment>
-  </ThemeProvider>
+                path="login_customer"
+                element={<CustomerLoginWithoutDealer />}
+              ></Route>
+            </Routes>
+          </React.Suspense>
+        </BrowserRouter>
+      </Fragment>
+    </ThemeProvider>
+  </TaskProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

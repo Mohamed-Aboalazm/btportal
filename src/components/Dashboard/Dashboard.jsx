@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { getAllLeaves } from "../../utils/api";
 import Board from "../pages/Board";
+import { TaskContext } from "../../context/TaskContext";
 
 export default function Dashboard() {
+  const { tasks, fetchTasks } = useContext(TaskContext); // Use TaskContext to get tasks
   const [showDetails, setShowDetails] = useState(false);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,19 +33,21 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    fetchTasks(); // Fetch tasks when the component mounts
     getData();
-  }, []);
+  }, [fetchTasks]);
 
   const getData = useCallback(async () => {
     setLoading(true);
     try {
       const apiData = await getAllLeaves();
       if (apiData.error) {
+        console.error(apiData.error);
       } else {
         setMainData(apiData.data);
       }
     } catch (err) {
-      console.log("err", err);
+      console.error("Error fetching data:", err);
     }
     setLoading(false);
   }, []);
@@ -60,137 +64,22 @@ export default function Dashboard() {
     },
   }));
 
-  const handleAddTodo = () => {
-    const newTodos = [
-      ...todos,
-      { id: Date.now(), text: newTodo, isEditing: false },
-    ];
-    setTodos(newTodos);
-    setNewTodo("");
-  };
-
-  const handleDeleteTodo = (id) => {
-    const updatedTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(updatedTodos);
-  };
-
-  const handleEditTodo = (id, newText) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, text: newText, isEditing: false };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
-
-  const toggleEditState = (id) => {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isEditing: !todo.isEditing };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
-
   return (
     <div className="bg-white" style={{ height: "100%" }}>
       <br />
       <br />
-      <h2 class="greeting-header">{greeting}</h2>
+      <h2 className="greeting-header">{greeting}</h2>
       <div className="row">
         <div className="col-lg-6" style={{ height: "400px" }}>
-          <Board />
+          <Board tasks={tasks} /> {/* Pass tasks to the Board component */}
         </div>
         <div className="col-lg-6" style={{ height: "400px", paddingRight: "25px" }}>
           <FullCalendar
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
             // events={transformedEvents}
-            // eventClick={(info) => {
-            //   alert(
-            //     `Event: ${info.event.title}\nStart: ${info.event.start}\nEnd: ${info.event.end}\nDescription: ${info.event.extendedProps.description}\nFeedback: ${info.event.extendedProps.feedback}\nStatus: ${info.event.extendedProps.status}`
-            //   );
-            // }}
           />
         </div>
-        <div className="col-lg-12" style={{ marginTop: "250px" }}></div>
-        {/* <div className="col-lg-12" style={{ marginTop: "300px" }}>
-          <div className="todo-list mt-2 p-15">
-            <h2>To Do List</h2>
-            <div className="row">
-              <div className="col-lg-7">
-                <div className="input-group mb-3 p-15">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Add a new todo"
-                    value={newTodo}
-                    onChange={(e) => setNewTodo(e.target.value)}
-                    aria-label="New todo"
-                    aria-describedby="button-add"
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-outline-primary ml-2"
-                      type="button"
-                      id="button-add"
-                      style={{ marginLeft: "10px" }}
-                      onClick={handleAddTodo}
-                      disabled={!newTodo}
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-8 p-15">
-                <ol className="list-group">
-                  {todos.map((todo, i) => (
-                    <li
-                      key={todo.id}
-                      className="list-group-item d-flex justify-content-between align-items-center"
-                    >
-                      {todo.isEditing ? (
-                        <input
-                          type="text"
-                          className="form-control"
-                          defaultValue={todo.text}
-                          onBlur={(e) =>
-                            handleEditTodo(todo.id, e.target.value)
-                          }
-                        />
-                      ) : (
-                        <span>
-                          {i + 1}) {todo.text}
-                        </span>
-                      )}
-
-                      <div>
-                        <button
-                          onClick={() => toggleEditState(todo.id)}
-                          className="btn btn-sm btn-secondary mr-4"
-                          aria-label="Edit"
-                        >
-                          <i className="fa fa-edit"></i>
-                        </button>
-                        <button
-                          onClick={() => handleDeleteTodo(todo.id)}
-                          className="btn btn-sm btn-danger ml-2"
-                          aria-label="Delete"
-                          style={{ marginLeft: "10px" }}
-                        >
-                          <i className="fa fa-trash"></i>
-                        </button>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
