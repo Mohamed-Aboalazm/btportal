@@ -80,6 +80,7 @@ export default function Dashboard() {
             // events={transformedEvents}
           />
         </div>
+        <div className="col-lg-12" style={{ marginTop: "12%" }}></div>
       </div>
     </div>
   );
